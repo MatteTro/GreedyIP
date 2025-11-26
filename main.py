@@ -279,37 +279,37 @@ if plot_show == 1:
     plt.suptitle("Comparison of Reconstructions", fontsize=14)
 
     plt.subplot(4, 2, 1)
-    plt.imshow(gt_im)
+    plt.imshow(gt_im, cmap = 'gist_heat')
     plt.title("GROUND TRUTH", fontsize=9)
     plt.axis('off')
 
     plt.subplot(4, 2, 5)
-    plt.imshow(mem_im)
+    plt.imshow(mem_im, cmap = 'gist_heat')
     plt.title("MEM_GE (tot points)", fontsize=9)
     plt.axis('off')
 
     plt.subplot(4, 2, 3)
-    plt.imshow(uv_im)
+    plt.imshow(uv_im, cmap = 'gist_heat')
     plt.title("UV_SMOOTH (tot points)", fontsize=9)
     plt.axis('off')
 
     plt.subplot(4, 2, 4)
-    plt.imshow(uv_im_gr)
+    plt.imshow(uv_im_gr, cmap = 'gist_heat')
     plt.title("UV_SMOOTH (sel points)", fontsize=9)
     plt.axis('off')
 
     plt.subplot(4, 2, 6)
-    plt.imshow(mem_im_gr)
+    plt.imshow(mem_im_gr, cmap = 'gist_heat')
     plt.title("MEM_GE (sel points)", fontsize=9)
     plt.axis('off')
 
     plt.subplot(4, 2, 7)
-    plt.imshow(clean_im)
+    plt.imshow(clean_im, cmap = 'gist_heat')
     plt.title("CLEAN (tot points)", fontsize=9)
     plt.axis('off')
 
     plt.subplot(4, 2, 8)
-    plt.imshow(clean_im_gr)
+    plt.imshow(clean_im_gr, cmap = 'gist_heat')
     plt.title("CLEAN (selected)", fontsize=9)
     plt.axis('off')
 
@@ -345,13 +345,3 @@ print()
 print("uv_smooth (greedy):          mean_err = {:.4f}".format(mean_err_uv_greedy))
 print("MEM_GE (greedy):             mean_err = {:.4f}".format(mean_err_mem_greedy))
 print("CLEAN (greedy):              mean_err = {:.4f}".format(mean_err_clean_greedy))
-
-
-
-
-
-
-
-
-
-len(vis.v[subset_greedy_idx_uv])
