@@ -103,10 +103,8 @@ def GreedyIP(starting_index, vis, method, pix, npix, n_points, plot_show,
             vis_pred = vis_pred.reshape(-1) * apu.ct / (apu.s * apu.cm**2 * apu.keV)
             vis_pred = vis_pred[0:len(vis_pred)//2] + 1j * vis_pred[len(vis_pred)//2:]
 
-            #diff = np.abs((vis.visibilities.value - vis_pred.visibilities.value) / vis.visibilities.value) #/ vis.amplitude_uncertainty.value
-            selection_rule = np.abs((vis.visibilities[test_index].value - vis_pred.value))/ np.abs(vis.visibilities[test_index].value) #/ vis.amplitude_uncertainty.value
             # Selection rule: absolute difference between predicted and measured visibilities (magnitude)
-            #selection_rule = abs(vis_pred.visibilities.value - vis.visibilities[test_index].value)
+            selection_rule = np.abs((vis.visibilities[test_index].value - vis_pred.value))/ np.abs(vis.visibilities[test_index].value)
         else:
             # Alternative selection: use kernel-based power function computed on uv coordinates
             vis_2 = Ku.duplicate_vis(greedy_vis)
@@ -169,7 +167,6 @@ def compute_metrics(reconstructed_image, vis, fourier_matrix):
     vis_pred = vis_pred.reshape(-1) * apu.ct / (apu.s * apu.cm**2 * apu.keV)
     vis_pred = vis_pred[0:len(vis_pred)//2] + 1j * vis_pred[len(vis_pred)//2:]
 
-    #diff = np.abs((vis.visibilities.value - vis_pred.visibilities.value) / vis.visibilities.value) #/ vis.amplitude_uncertainty.value
     diff = vis.visibilities.value - vis_pred.value
     diff_rel = np.abs(diff) / np.abs(vis.visibilities.value) 
     diff_chi = np.abs(diff) / np.abs(vis.amplitude_uncertainty.value)
@@ -209,3 +206,4 @@ def index_to_subcollimator_name(indices):
         subcollimators.append(f"{group}{letter}")
 
     return subcollimators
+
