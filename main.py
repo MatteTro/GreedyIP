@@ -211,9 +211,9 @@ chi2_MEM, rmse_MEM, mean_err_MEM = gr.compute_metrics(mem_im, vis, F)
 chi2_CLEAN, rmse_clean, mean_err_clean = gr.compute_metrics(clean_im, vis, F)
 
 # Compute chi-squared comparing predicted visibilities from each reconstructed image 
-chi2_uv_greedy, rmse_uv_greedy, mean_err_uv_greedy  = gr.compute_metrics(uv_im_gr, vis, F)
+chi2_uv_greedy, rmse_uv_greedy, mean_err_uv_greedy = gr.compute_metrics(uv_im_gr, vis, F)
 chi2_mem_greedy, rmse_mem_greedy, mean_err_mem_greedy = gr.compute_metrics(mem_im_gr, vis, F)
-chi2_clean_greedy, rmse_clean_greedy,mean_err_clean_greedy = gr.compute_metrics(clean_im_gr, vis, F)
+chi2_clean_greedy, rmse_clean_greedy, mean_err_clean_greedy = gr.compute_metrics(clean_im_gr, vis, F)
 
 
 # -------------------------
@@ -334,7 +334,7 @@ print("MEM_GE:                      rmse = {:.4f}".format(rmse_MEM))
 print("CLEAN:                       rmse = {:.4f}".format(rmse_clean))
 print()
 print("uv_smooth (greedy):          rmse = {:.4f}".format(rmse_uv_greedy))
-print("MEM_GE (greedy)::            rmse = {:.4f}".format(rmse_mem_greedy))
+print("MEM_GE (greedy):            rmse = {:.4f}".format(rmse_mem_greedy))
 print("CLEAN (greedy):              rmse = {:.4f}".format(rmse_clean_greedy))
 print()
 print("===================== mre =======================")
