@@ -35,7 +35,7 @@ T = 4 / (1 + np.sqrt(5)) * np.pi * np.arange(1, N + 1)
 
 xc = R * np.cos(T)
 yc = R * np.sin(T)
-y = np.column_stack((xc, yc))   #
+y = np.column_stack((xc, yc))
 u_fibo = xc.flatten()
 v_fibo = yc.flatten()
 
