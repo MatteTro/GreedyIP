@@ -157,6 +157,43 @@ def compute_metrics(reconstructed_image, vis, fourier_matrix):
 
     Returns
     -------
+    rmse : float
+        Root Mean Square Error of the standardized complex visibilities.
+    mre : float
+        Mean Relative Error (or Mean Absolute Residual) of the standardized complex visibilities.
+    """
+    
+    vis_pred = fourier_matrix @ reconstructed_image.reshape(-1)
+    
+    # Convert back to complex visibilities
+    vis_pred = vis_pred.reshape(-1) * apu.ct / (apu.s * apu.cm**2 * apu.keV)
+    vis_pred = vis_pred[0:len(vis_pred)//2] + 1j * vis_pred[len(vis_pred)//2:]
+
+    # Standardize with respect to the ground truth
+    m = np.min(np.abs(vis.visibilities.value))
+    RA_im =(np.max(np.abs(vis.visibilities.value)-m))
+    v = (vis.visibilities.value-m)/RA_im
+    pred = (vis_pred.value-m)/RA_im
+    
+    diff = v - pred
+    diff_rel = np.abs(diff)
+    rmse = np.sqrt(np.sum((diff_rel**2)) / len(vis.visibilities))
+    mre = np.mean(np.abs(diff_rel))
+    return rmse, mre
+
+def compute_chi(reconstructed_image, vis, fourier_matrix):
+    """
+    Compute a chi-squared metric between a reconstructed image and observed visibilities.
+
+    Parameters
+    ----------
+    reconstructed_image : SunPy Map-like or object with `.data` attribute (2D array)
+        The image object used for forward-modeling.
+    vis : Visibilities
+        Observed visibilities with uncertainties.
+
+    Returns
+    -------
     chi2 : float
         Computed chi-squared-like scalar (sum of squared normalized residuals / N).
     """
@@ -168,14 +205,10 @@ def compute_metrics(reconstructed_image, vis, fourier_matrix):
     vis_pred = vis_pred[0:len(vis_pred)//2] + 1j * vis_pred[len(vis_pred)//2:]
 
     diff = vis.visibilities.value - vis_pred.value
-    diff_rel = np.abs(diff) / np.abs(vis.visibilities.value) 
     diff_chi = np.abs(diff) / np.abs(vis.amplitude_uncertainty.value)
-    # chi2 as mean squared normalized residual
+    
     chi2 = np.sum((diff_chi**2)) / len(vis.visibilities)
-    rmse = np.sqrt(np.sum((diff_rel**2)) / len(vis.visibilities))
-    mre = np.mean(np.abs(diff_rel))
-    return chi2, rmse, mre
-
+    return chi2
 
 def index_to_subcollimator_name(indices):
     """
