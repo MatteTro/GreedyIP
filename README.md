@@ -66,6 +66,11 @@ Functions for simulating flare sources and generating visibilities or Fourier ma
 
 The `Sim_data` folder provides a workflow for testing greedy point-selection strategies with Tikhonov-regularized image reconstruction. It can be used with different test functions, including examples outside astronomical imaging.
 
+(Rec_400punti.png)
+<p align="center">
+  <strong>Example Reconstruction.</strong>
+</p>
+
 Choose or define the test function in `img_test.py`, then use the script to evaluate the selected greedy strategy and reconstruct the corresponding image. See `img_test.py` for the available options and expected function format.
 
 The workflow supports residual-based and error-based greedy point-selection strategies.
