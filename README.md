@@ -62,7 +62,7 @@ Functions for UV interpolation and reconstruction
 - "**simulator.py**":
 Functions for simulating flare sources and generating visibilities or Fourier matrices for testing and demo purposes.
 
-## Testing greedy selection on simulated data
+# Testing greedy selection on simulated data
 
 The `Sim_data` folder provides a workflow for testing greedy point-selection strategies with Tikhonov-regularized image reconstruction. It can be used with different test functions, including examples outside astronomical imaging.
 
