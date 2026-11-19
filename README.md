@@ -79,4 +79,4 @@ The folder contains:
 # Citations
 If you use this code please cite
 
-> L. Bruni Bruno, P. Massa, E. Perracchione, M. Trombini, Greedy methods for inverse problems: application to image reconstruction, in preparation 2025
+> L. Bruni Bruno, P. Massa, E. Perracchione, M. Trombini, Greedy methods for inverse problems: application to image reconstruction, under review 2025
