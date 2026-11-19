@@ -48,7 +48,7 @@ To evaluate the reconstruction quality across different sampling strategies and 
 
 - **χ² (Chi-square)** — discrepancy between observed and model visibilities  
 - **RMSE (Root Mean Square Error)** — absolute reconstruction error  
-- **MRE (Mean Relative Error)** — relative reconstruction error  
+- **MRE (Mean Relative Error)** — relative reconstruction error
 
 # Contents
 This repository contains a demo for greedy selection of visibilities and UV interpolation using kernel-based methods. The demo allows simulating different types of solar flares, generating the corresponding visibilities, and performing greedy selection and reconstruction via different reconstruction methods
@@ -62,7 +62,21 @@ Functions for UV interpolation and reconstruction
 - "**simulator.py**":
 Functions for simulating flare sources and generating visibilities or Fourier matrices for testing and demo purposes.
 
+## Testing greedy selection on simulated data
+
+The `Sim_data` folder provides a workflow for testing greedy point-selection strategies with Tikhonov-regularized image reconstruction. It can be used with different test functions, including examples outside astronomical imaging.
+
+Choose or define the test function in `img_test.py`, then use the script to evaluate the selected greedy strategy and reconstruct the corresponding image. See `img_test.py` for the available options and expected function format.
+
+The workflow supports residual-based and error-based greedy point-selection strategies.
+
+The folder contains:
+- **`main_sim.py`**: Main script for running the simulated-data workflow.
+- **`aux_function.py`**: Utility functions for interpolation, greedy point selection, image inversion and reconstruction, and reconstruction metrics.
+- **`img_test.py`**: Test functions used in the examples. Add your own functions here to test the workflow on other image models, including non-astronomical ones.
+
+
 # Citations
 If you use this code please cite
 
-> L. Bruni Bruno, P. Massa, E. Perracchione, M. Trombini, Greedy methods in inverse problems, in preparation 2025
+> L. Bruni Bruno, P. Massa, E. Perracchione, M. Trombini, Greedy methods for inverse problems: application to image reconstruction, in preparation 2025
